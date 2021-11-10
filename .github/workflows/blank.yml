@@ -1,0 +1,19 @@
+name: MirrorRepo
+
+on:
+  create:
+  push:
+  delete:
+  
+jobs:
+  gitlab:
+    if: ${{ github.ref_type == 'branch' }}
+    runs-on: [self-hosted, linux]
+    steps:
+      - uses: actions/checkout@v2
+      - name: sync
+        run: |
+          echo "${ github.ref_name }".
+
+#           git@gitlab.com:joycastle/bingo/client/bingo.git
+#           ${{ secrets.GITLAB_SSH_PRIVATE_KEY }}
