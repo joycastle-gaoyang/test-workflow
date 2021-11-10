@@ -1,7 +1,6 @@
 name: MirrorRepo
 
 on:
-  create:
   push:
   delete:
   
@@ -13,26 +12,24 @@ jobs:
       - uses: actions/checkout@v2
       - name: sync
         run: |
-          # 添加 mirror 源
+          # 打印输入参数
+          echo ${{ github.event_name }}
+          echo ${{ github.ref_name }}
+
+          # 添加镜像源
           if [ `git remote -v | awk '{print $1}' | grep gitlab | wc -l` = 0 ]; then
               git remote add gitlab git@gitlab.com:gaoyang/test-mirror.git
           fi
-
           git remote -v
 
-          echo ${{ github.ref_name }}
-          echo ${{ github.event_name }}
-          
-          if [ "${{ github.event_name }}" == "create" ] || [ "${{ github.event_name }}" == "push" ]; then
-            echo "create or push"
-          #     git checkout ${{ github.ref_name }}
-          #     git pull
-          #     git push mirror ${github.ref_name}
+          # 处理各种 event
+          if [ "${{ github.event_name }}" == "push" ]; then
+            git checkout ${{ github.ref_name }}
+            git pull
+            git push gitlab ${{ github.ref_name }}
           elif [ "${{ github.event_name }}" == "delete" ]; then
             echo "delete"
-          #     git push -d mirror ${{ github.ref_name }}
-          else
-            echo "not support"
+            git push -d mirror ${{ github.ref_name }}
           fi
 
 
