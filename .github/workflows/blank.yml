@@ -21,14 +21,14 @@ jobs:
 
           echo ${{ github.ref_name }}
           
-          # if [ "${{ github_event_name }}" == "create" ] || [ "${{ github_event_name }}" == "push" ]; then
+          # if [ "${{ github.event_name }}" == "create" ] || [ "${{ github.event_name }}" == "push" ]; then
           #     echo "create or push"
-          #     git checkout ${{ github_ref_name }}
+          #     git checkout ${{ github.ref_name }}
           #     git pull
-          #     git push mirror ${github_ref_name}
-          # elif [ "${github_event_name}" == "delete" ]; then
+          #     git push mirror ${github.ref_name}
+          # elif [ "${{ github.event_name }}" == "delete" ]; then
           #     echo "delete"
-          #     git push -d mirror ${github_ref_name}
+          #     git push -d mirror ${{ github.ref_name }}
           # else
           #     echo "not support"
           # fi
