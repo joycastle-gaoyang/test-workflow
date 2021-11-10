@@ -21,6 +21,11 @@ jobs:
               git remote add gitlab git@gitlab.com:gaoyang/test-mirror.git
           fi
           git remote -v
+          
+          # 写入 ssh 私钥
+          mkdir -p ~/.ssh
+          echo "${{ secrets.GITLAB_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
 
           # 处理各种 event
           if [ "${{ github.event_name }}" == "push" ]; then
