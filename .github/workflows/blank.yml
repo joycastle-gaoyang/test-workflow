@@ -15,6 +15,6 @@ jobs:
           # 打印输入参数
           echo ${{ github.event_name }}
           echo ${{ github.ref_name }}
-          echo ${{ github.event }}
+          echo ${{ toJSON(github.event) }}
           echo ${{ github.event.ref }}
           
