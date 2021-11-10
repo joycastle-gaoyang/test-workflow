@@ -18,3 +18,5 @@ jobs:
           echo ${{ github.base_ref }}
           echo ${{ github.head_ref }}
           echo ${{ github.ref }}
+          echo ${{ github.event.ref }}
+          
