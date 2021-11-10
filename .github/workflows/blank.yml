@@ -13,8 +13,7 @@ jobs:
       - name: sync
         run: |
           # 打印输入参数
-          echo ${{ github.event_name }}
-          echo ${{ github.ref_name }}
-          echo ${{ toJSON(github.event) }}
-          echo ${{ github.event.ref }}
+          echo "${{ github.event_name }}"
+          echo "${{ github.ref_name }}"
+          echo "${{ toJSON(github.event) }}"
           
