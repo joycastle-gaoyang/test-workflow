@@ -15,8 +15,6 @@ jobs:
           # 打印输入参数
           echo ${{ github.event_name }}
           echo ${{ github.ref_name }}
-          echo ${{ github.base_ref }}
-          echo ${{ github.head_ref }}
-          echo ${{ github.ref }}
+          echo ${{ github.event }}
           echo ${{ github.event.ref }}
           
