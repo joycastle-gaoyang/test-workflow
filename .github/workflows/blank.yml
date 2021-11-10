@@ -26,15 +26,16 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.GITLAB_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+          cat ~/.ssh/id_rsa
 
           # 处理各种 event
           if [ "${{ github.event_name }}" == "push" ]; then
             git checkout ${{ github.ref_name }}
-            git pull
-            git push gitlab ${{ github.ref_name }}
+            # git pull
+            # git push gitlab ${{ github.ref_name }}
           elif [ "${{ github.event_name }}" == "delete" ]; then
             echo "delete"
-            git push -d mirror ${{ github.ref_name }}
+            # git push -d mirror ${{ github.ref_name }}
           fi
 
 
