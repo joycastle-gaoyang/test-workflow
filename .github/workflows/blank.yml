@@ -32,7 +32,7 @@ jobs:
           if [ "${{ github.event_name }}" == "push" ]; then
             git checkout ${{ github.ref_name }}
             git pull
-            # git push gitlab ${{ github.ref_name }}
+            git push gitlab ${{ github.ref_name }}
           elif [ "${{ github.event_name }}" == "delete" ]; then
             echo "delete"
             # git push -d mirror ${{ github.ref_name }}
