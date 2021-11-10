@@ -21,18 +21,19 @@ jobs:
           git remote -v
 
           echo ${{ github.ref_name }}
+          echo ${{ github.event_name }}
           
-          # if [ "${{ github.event_name }}" == "create" ] || [ "${{ github.event_name }}" == "push" ]; then
-          #     echo "create or push"
+          if [ "${{ github.event_name }}" == "create" ] || [ "${{ github.event_name }}" == "push" ]; then
+            echo "create or push"
           #     git checkout ${{ github.ref_name }}
           #     git pull
           #     git push mirror ${github.ref_name}
-          # elif [ "${{ github.event_name }}" == "delete" ]; then
-          #     echo "delete"
+          elif [ "${{ github.event_name }}" == "delete" ]; then
+            echo "delete"
           #     git push -d mirror ${{ github.ref_name }}
-          # else
-          #     echo "not support"
-          # fi
+          else
+            echo "not support"
+          fi
 
 
 #           git@gitlab.com:joycastle/bingo/client/bingo.git
